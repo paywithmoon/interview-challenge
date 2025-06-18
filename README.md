@@ -35,7 +35,7 @@ You'll demonstrate your skills with **Node.js + TypeScript + Express** and **Kne
    ```
 
 3. **Update database configuration:**
-   Edit `src/knexfile.ts` with your MySQL credentials
+   Edit `knexfile.js` with your MySQL credentials
 
 4. **Run migrations:**
    ```bash
@@ -70,7 +70,6 @@ The server will start on `http://localhost:3000`
 
 **Important rules:**
 - Never allow negative balances
-- Use Knex transactions for data integrity
 
 ### Step 4: Expose the Problem (8-10 min)
 **Create a race condition demonstration:**
@@ -89,15 +88,15 @@ The server will start on `http://localhost:3000`
 ## 🏗️ Project Structure
 
 ```
-src/
-├── index.ts              # Express server entry point
-├── knexfile.ts          # Knex database configuration
-├── database/
-│   └── connection.ts    # Database connection
-├── types/
-│   └── index.ts         # TypeScript interfaces
-migrations/
-└── 001_create_accounts_table.ts
+├── knexfile.js          # Knex database configuration
+├── migrations/
+│   └── 001_create_accounts_table.js
+└── src/
+    ├── index.ts         # Express server entry point
+    ├── database/
+    │   └── connection.ts # Database connection
+    └── types/
+        └── index.ts     # TypeScript interfaces
 ```
 
 ---
