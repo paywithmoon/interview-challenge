@@ -25,11 +25,13 @@ You'll demonstrate your skills with **Node.js + TypeScript + Express** and **Kne
 ### Setup Instructions
 
 1. **Install dependencies:**
+
    ```bash
    npm install
    ```
 
 2. **Create MySQL database:**
+
    ```sql
    CREATE DATABASE bank_interview;
    ```
@@ -38,11 +40,13 @@ You'll demonstrate your skills with **Node.js + TypeScript + Express** and **Kne
    Edit `knexfile.js` with your MySQL credentials
 
 4. **Run migrations:**
+
    ```bash
    npm run migrate
    ```
 
 5. **Start development server:**
+
    ```bash
    npm run dev
    ```
@@ -54,34 +58,44 @@ The server will start on `http://localhost:3000`
 ## 📋 What You'll Build
 
 ### Step 1: Get Started (5-8 min)
+
 ✅ Project structure is ready
 ✅ Dependencies are configured
+
 - **Your task:** Verify the setup works and test the health endpoint: `GET /health`
 
 ### Step 2: Basic Account Operations (8-10 min)
+
 **Build these endpoints:**
+
 - `POST /accounts` → create a new account with zero balance
 - `GET /accounts/:id` → retrieve account details and current balance
 
 ### Step 3: Money Operations (10-12 min)
+
 **Add these endpoints:**
+
 - `POST /accounts/:id/credit` → add money to account
 - `POST /accounts/:id/debit` → remove money from account
 
 **Important rules:**
+
 - Never allow negative balances
 
 ### Step 4: Expose the Problem (8-10 min)
+
 **Create a race condition demonstration:**
+
 - Build an endpoint `/simulate-race` that shows what happens with concurrent operations
 - Use multiple simultaneous debit requests on the same account
 - Demonstrate the data inconsistency issue
 
 ### Step 5: Fix the Problem (8-10 min)
+
 **Implement proper concurrency control:**
-- Use `SELECT ... FOR UPDATE` to prevent race conditions
-- Ensure operations are properly serialized
-- Verify your fix works with the race simulation
+
+- Fix the issue on the `/simulate-race`endpoint
+- Use database strategy to prevent concurrency issues
 
 ---
 
@@ -104,11 +118,13 @@ The server will start on `http://localhost:3000`
 ## 🧪 Testing Your Work
 
 Test your endpoints manually or run the provided test suite:
+
 ```bash
 npm test
 ```
 
 You can also test your API endpoints using:
+
 - **cURL commands**
 - **Postman/Insomnia**  
 - **Your browser** (for GET requests)
@@ -153,7 +169,8 @@ CREATE TABLE accounts (
 
 ## 💡 Code Examples & Hints
 
-### Using Knex Transactions:
+### Using Knex Transactions
+
 ```typescript
 await db.transaction(async trx => {
   // All your database operations here
@@ -161,7 +178,8 @@ await db.transaction(async trx => {
 });
 ```
 
-### Preventing Race Conditions:
+### Preventing Race Conditions
+
 ```typescript
 // Lock the row while reading and updating
 const account = await trx('accounts')
@@ -170,7 +188,8 @@ const account = await trx('accounts')
   .first();
 ```
 
-### Simulating Concurrent Requests:
+### Simulating Concurrent Requests
+
 ```typescript
 // Create multiple simultaneous requests to test race conditions
 const promises = Array(10).fill(null).map(() => 
@@ -186,7 +205,7 @@ const results = await Promise.all(promises);
 
 ---
 
-## 🎯 You'll Know You're Successful When...
+## 🎯 You'll Know You're Successful When
 
 - [ ] All your endpoints respond correctly and handle errors gracefully
 - [ ] You can demonstrate the race condition problem with your simulation
@@ -199,6 +218,7 @@ const results = await Promise.all(promises);
 ## 💬 Questions & Discussion
 
 Feel free to:
+
 - **Ask questions** about requirements or clarify expectations
 - **Explain your thought process** as you work through the problems
 - **Discuss alternative approaches** and their trade-offs
@@ -206,4 +226,4 @@ Feel free to:
 
 ---
 
-**Let's build something great! 🚀** 
+**Let's build something great! 🚀**
