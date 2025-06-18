@@ -178,31 +178,6 @@ await db.transaction(async trx => {
 });
 ```
 
-### Preventing Race Conditions
-
-```typescript
-// Lock the row while reading and updating
-const account = await trx('accounts')
-  .where('id', accountId)
-  .forUpdate()  // This prevents other transactions from modifying this row
-  .first();
-```
-
-### Simulating Concurrent Requests
-
-```typescript
-// Create multiple simultaneous requests to test race conditions
-const promises = Array(10).fill(null).map(() => 
-  fetch(`http://localhost:3000/accounts/${accountId}/debit`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ amount: 10 })
-  })
-);
-
-const results = await Promise.all(promises);
-```
-
 ---
 
 ## 🎯 You'll Know You're Successful When
